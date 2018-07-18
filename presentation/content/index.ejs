@@ -8,5 +8,163 @@
 </section>
 
 <section>
+  <h2>React</h2>
+
+  <section>
+    <h3>Two problems</h3>
+
+    <ul>
+      <li>Local Resources</li>
+      <li>Network Resources</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>React 16</h3>
+  </section>
+</section>
+
+<section>
+  <h2>Local Resources</h2>
+
+  <section>
+    <h3>Async Rendering</h3>
+
+    <img src="images/perf-not-fiber.png" />
+    <small>Not Fiber</small>
+
+    <img src="images/perf-fiber.png" />
+    <small>Fiber</small>
+  </section>
+
+  <section>
+    <h3>Fiber</h3>
+
+    <p>New Reconciliation Algorithm</p>
+  </section>
+
+  <section>
+    <h3>Two Phases</h3>
+
+    <ul>
+      <li>Reconciliation</li>
+      <li>Commit</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Reconciliation Phase Callbacks</h3>
+
+    <p>Can be called multiple times</p>
+
+    <ul>
+      <li>componentWillMount</li>
+      <li>componentWillReceiveProps</li>
+      <li>shouldComponentUpdate</li>
+      <li>componentWillUpdate</li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <h2>Callback Changes</h2>
+
+  <section>
+    <h3><strike>componentWillMount</strike></h3>
+  </section>
+
+  <section>
+    <h3><strike>componentWillReceiveProps</strike></h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+class Conter extends Component {
+  constructor(props) {
+    super(props);
+    state = { count: props.count };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.count !== this.props.count) {
+      this.setState({ count: nextProps.count });
+    }
+  }
+
+  render() {
+    return &lt;h1&gt;{this.state.count}&lt;/h1&gt;
+  }
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>static getDerivedStateFromProps</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+class Conter extends Component {
+  state = {};
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return { count: nextProps.count };
+  }
+
+  render() {
+    return &lt;h1&gt;{this.state.count}&lt;/h1&gt;
+  }
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h3><strike>componentWillUpdate</strike><h3>
+  </section>
+
+  <section>
+    <h3>getSnapshotBeforeUpdate</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    if (prevProps.list.length &lt; this.props.list.length) {
+      const list = this.listRef.current;
+      return list.scrollHeight - list.scrollTop;
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (snapshot !== null) {
+      const list = this.listRef.current;
+      list.scrollTop = list.scrollHeight - snapshot;
+    }
+  }
+    </code></pre>
+  </section>
+
+  <section>
+    <img src="images/react-lifecycle.jpg" />
+  </section>
+
+  <section>
+    <h3>componentDidCatch</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+class ErrorBound extends React.Component {
+  state = { hasError: false };
+
+  componentDidCatch(error, info) {
+    this.setState(() =&gt; ({ hasError: true }))
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return &lt;h1&gt;Error&lt;/h1&gt;
+    }
+    return props.children;
+  }
+}
+    </code></pre>
+  </section>
+</section>
+
+<section>
   <h2>Questions?</h2>
 </section>
