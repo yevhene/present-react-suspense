@@ -28,13 +28,9 @@
   <h2>Local Resources</h2>
 
   <section>
-    <h3>Async Rendering</h3>
+    <h3>Problem: One thread</h3>
 
-    <img src="images/perf-not-fiber.png" />
-    <small>Not Fiber</small>
-
-    <img src="images/perf-fiber.png" />
-    <small>Fiber</small>
+    <h4>TODO: fiber</h4>
   </section>
 
   <section>
@@ -50,6 +46,16 @@
       <li>Reconciliation</li>
       <li>Commit</li>
     </ul>
+  </section>
+
+  <section>
+    <h3>Async Rendering</h3>
+
+    <img src="images/perf-not-fiber.png" />
+    <small>Not Fiber</small>
+
+    <img src="images/perf-fiber.png" />
+    <small>Fiber</small>
   </section>
 
   <section>
@@ -147,7 +153,7 @@ class Conter extends Component {
     <h3>componentDidCatch</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
-class ErrorBound extends React.Component {
+class ErrorBound extends Component {
   state = { hasError: false };
 
   componentDidCatch(error, info) {
@@ -183,8 +189,118 @@ class ErrorBound extends React.Component {
   </section>
 
   <section>
-    <h1>Demo: suspense</h1>
+    <h2>Demo: suspense</h2>
+
+    <p>Loading cascades</p>
   </section>
+</section>
+
+<section>
+  <h2>Implementation</h2>
+
+  <section>
+    <h3>This API is so raw ...</h3>
+
+    <img src="images/raw-api.jpg" />
+  </section>
+
+  <section>
+    <h3>Enable Suspense</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+// Suspense
+export const enableSuspense = true;
+    </code></pre>
+
+    <p>react/packages/shared/ReactFeatureFlags.js</p>
+  </section>
+
+  <section>
+    <h3>Placeholder</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+&lt;Placeholder fallback={&lt;div className="spinner"&gt;&lt;/div&gt;}&gt;
+  &lt;Content /&gt;
+&lt;/Placeholder&gt;
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>How it works?</h3>
+
+    <img src="images/suspense-mechanism.png" />
+  </section>
+
+  <section>
+    <h2>Demo: poor-mans-suspense</h2>
+  </section>
+
+  <section>
+    <h3>SlowContent</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+const cache = { status: false };
+
+function wait(time) {
+  if (cache.status) {
+    return;
+  }
+  cache.status = true;
+
+  throw new Promise((resolve) =&gt;
+    setTimeout(() =&gt; resolve(), time)
+  );
+}
+
+function SlowContent(props) {
+  wait(1500);
+  return <h3>Slow Content</h3>;
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>Placeholder</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+class Placeholder extends Component {
+  state = { isReady: true }
+
+  componentDidCatch(e) {
+    this.setState(() =&gt; ({ isReady: false }))
+    if (!(e instanceof Promise)) throw e;
+    e.then(() =&gt; this.setState(() =&gt; ({ isReady: true })))
+  }
+
+  render() {
+    if (!this.state.isReady) {
+      return this.props.placeholder;
+    }
+
+    return this.props.children;
+  }
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>React Implementation</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+export const REACT_PLACEHOLDER_TYPE = hasSymbol
+  ? Symbol.for('react.placeholder')
+  : 0xead1;
+    </code></pre>
+
+    <p>react/packages/shared/ReactSymbols.js</p>
+  </section>
+</section>
+
+<section>
+TODO:
+two gifs
+simple-cache-provider
+unnecessary loading states
 </section>
 
 <section>

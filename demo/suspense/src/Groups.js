@@ -3,6 +3,7 @@ import React, { Placeholder } from 'react';
 import Students from './Students';
 
 import { groupsFetcher } from './future/fetchers';
+import { studentsFetcher } from './future/fetchers';
 
 const Groups = () => {
   const groups = groupsFetcher.read();
