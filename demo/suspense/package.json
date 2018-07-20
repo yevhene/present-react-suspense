@@ -4,10 +4,11 @@
   "private": true,
   "dependencies": {
     "barecss": "^1.1.1",
-    "react": "16.4.0-alpha.0911da3",
-    "react-dom": "16.4.0-alpha.0911da3",
+    "data": "file:../data",
+    "react": "file:../react/master/react",
+    "react-dom": "file:../react/master/react-dom",
     "react-scripts": "1.1.4",
-    "simple-cache-provider": "0.2.1"
+    "simple-cache-provider": "file:../react/master/simple-cache-provider"
   },
   "scripts": {
     "start": "react-scripts start",

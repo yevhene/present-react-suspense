@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, { Placeholder } from 'react';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
+import Groups from './Groups';
+
+const App = () => (
+  <section>
+    <h1>Студенти</h1>
+    <hr />
+    <Placeholder fallback={<div className="spinner"></div>}>
+      <Groups />
+    </Placeholder>
+  </section>
+);
 
 export default App;
