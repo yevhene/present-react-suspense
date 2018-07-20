@@ -45,6 +45,16 @@ const data = {
     name: 'Цукерберг Марко',
     group: '2КН-16',
     photo: 'students/photos/10.jpg'
+  }],
+
+  courses: [{
+    name: 'Крос-платформне програмування',
+    teacher: 'Євген Шемет',
+    cover: 'courses/covers/js.png'
+  }, {
+    name: 'Теорія алгоритмів',
+    teacher: 'Інший Хтось',
+    cover: 'courses/covers/algorithm.png'
   }]
 };
 
@@ -54,7 +64,7 @@ function delay(data, ms) {
   );
 }
 
-const defaultTimeout = 1000;
+const defaultTimeout = 500;
 
 export function getGroups(ms = defaultTimeout) {
   return delay(data.groups, ms);
@@ -66,6 +76,10 @@ export function getStudents(group, ms = defaultTimeout) {
 
 export function getStudent(name, ms = defaultTimeout) {
   return delay(data.students.find((student) => student.name === name), ms);
+}
+
+export function getCourses(ms = defaultTimeout) {
+  return delay(data.courses, ms);
 }
 
 export function getImage(src, ms = defaultTimeout) {

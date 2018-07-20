@@ -1,6 +1,6 @@
 import { createCache, createResource } from 'simple-cache-provider';
 
-import { getGroups, getImage, getStudents, getStudent } from 'data';
+import { getCourses, getGroups, getImage, getStudents, getStudent } from 'data';
 
 const cache = createCache();
 
@@ -25,6 +25,14 @@ export const studentFetcher = createFetcher(
   (name) => getStudent(name)
 );
 
+export const coursesFetcher = createFetcher(
+  () => getCourses()
+);
+
 export const imageFetcher = createFetcher(
   (src) => getImage(src)
+);
+
+export const coursePageFetcher = createFetcher(
+  () =>  import('../Course.js')
 );
