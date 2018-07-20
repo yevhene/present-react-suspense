@@ -5,10 +5,10 @@
   "dependencies": {
     "barecss": "^1.1.1",
     "data": "file:../data",
-    "react": "file:../react/master/react",
-    "react-dom": "file:../react/master/react-dom",
+    "react": "file:../react/4e36739/react",
+    "react-dom": "file:../react/4e36739/react-dom",
     "react-scripts": "1.1.4",
-    "simple-cache-provider": "file:../react/master/simple-cache-provider"
+    "simple-cache-provider": "file:../react/4e36739/simple-cache-provider"
   },
   "scripts": {
     "start": "react-scripts start",
