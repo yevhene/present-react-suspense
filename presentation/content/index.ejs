@@ -196,7 +196,7 @@ class ErrorBound extends Component {
 </section>
 
 <section>
-  <h2>Implementation</h2>
+  <h2>React Suspense</h2>
 
   <section>
     <h3>This API is so raw ...</h3>
@@ -297,10 +297,56 @@ export const REACT_PLACEHOLDER_TYPE = hasSymbol
 </section>
 
 <section>
+  <h2>simple-cache-provider</h2>
+
+  <section>
+    <img src="images/simple-cache-provider-disclaimer.png" />
+  </section>
+
+  <section>
+    <img src="images/what-the-fuck.jpg" />
+  </section>
+
+  <section>
+    <h3>read</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+import { createCache, createResource } from 'simple-cache-provider';
+
+const cache = createCache();
+
+export const studentFetcher = createResource(
+  (id) =&gt; fetch(`http://localhost:3000/students/${id}`)
+);
+
+const student = studentFetcher.read(cache, 1)
+    </code></pre>
+  </section>
+
+  <section>
+    <h3>preload</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+studentFetcher.preload(cache, 1)
+
+// ...Later...
+const student = studentFetcher.read(cache, 1)
+    </code></pre>
+  </section>
+
+  <section>
+    <h2>Demo: suspense</h2>
+
+    <p>Preload groups</p>
+  </section>
+</section>
+
+<section>
 TODO:
 two gifs
-simple-cache-provider
+code splitting
 unnecessary loading states
+SSR
 </section>
 
 <section>
