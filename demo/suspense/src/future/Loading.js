@@ -2,7 +2,7 @@ import React, { Placeholder } from 'react';
 
 const Loading = ({
   fallback = (<div className="spinner"></div>),
-  delayMs = 10000,
+  delayMs = 0,
   children
 }) => (
   <Placeholder delayMs={delayMs} fallback={fallback}>

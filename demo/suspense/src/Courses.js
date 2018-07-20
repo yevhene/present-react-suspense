@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Loading from './future/Loading';
-import Img from './future/Img';
 import { coursePageFetcher } from './future/fetchers';
 import { coursesFetcher } from './future/fetchers';
 

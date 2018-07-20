@@ -64,7 +64,7 @@ function delay(data, ms) {
   );
 }
 
-const defaultTimeout = 500;
+const defaultTimeout = 1000;
 
 export function getGroups(ms = defaultTimeout) {
   return delay(data.groups, ms);

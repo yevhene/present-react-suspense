@@ -234,6 +234,10 @@ export const enableSuspense = true;
   </section>
 
   <section>
+    <h3>Let's Implement It</h3>
+  </section>
+
+  <section>
     <h3>SlowContent</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
@@ -285,7 +289,7 @@ class Placeholder extends Component {
     <h2>Demo: poor-mans-suspense</h2>
 
     <ul>
-      <li></li>
+      <li>It work's</li>
     </ul>
   </section>
 
@@ -317,7 +321,9 @@ export const REACT_PLACEHOLDER_TYPE = hasSymbol
     <h3>read</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
-import { createCache, createResource } from 'simple-cache-provider';
+import {
+  createCache, createResource
+} from 'simple-cache-provider';
 
 const cache = createCache();
 
@@ -354,11 +360,32 @@ const student = studentFetcher.read(cache, 1)
   <h2>Avoid Unnecessary Loading States</h2>
 
   <section>
+    <h3>delayMs</h3>
+
+    <pre><code class="javascript" data-trim contenteditable>
+      &lt;Placeholder
+        delayMs={1000}
+        fallback={&lt;Spinner /&gt;}
+      &gt;
+        &lt;Content /&gt;
+      &lt;/Placeholder&gt;
+    </code></pre>
+  </section>
+
+  <section>
     <ul>
       <li>start rendering before have data</li>
       <li>pause rendering till data is ready</li>
       <li>- on fast network delay dom mutations until entire tree is complete</li>
       <li>- on slow network control load</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Demo: suspense</h2>
+
+    <ul>
+      <li>Loader deplayMs</li>
     </ul>
   </section>
 </section>
@@ -368,10 +395,10 @@ const student = studentFetcher.read(cache, 1)
 
   <section>
     <pre><code class="javascript" data-trim contenteditable>
-import {renderToNodeStream} from 'react-dom';
+import { renderToNodeStream } from 'react-dom';
 
 app.get('/', (req, res) =&gt; {
-  const stream = renderToNodeStream(<App />);
+  const stream = renderToNodeStream(&lt;App /&gt;);
   stream.pipe(res);
   stream.on('finish', () =&gt; {
     res.end();
