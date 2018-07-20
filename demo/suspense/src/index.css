@@ -27,9 +27,19 @@
   height: 50px;
 }
 
+.big-avatar-spinner {
+  width: 100px;
+  height: 100px;
+}
+
 .avatar {
   max-width: 50px;
   max-height: 50px;
+}
+
+.big-avatar {
+  max-width: 100px;
+  max-height: 100px;
 }
 
 .student {

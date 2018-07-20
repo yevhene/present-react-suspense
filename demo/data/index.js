@@ -54,19 +54,21 @@ function delay(data, ms) {
   );
 }
 
-export function getGroups(ms = 1500) {
+const defaultTimeout = 1000;
+
+export function getGroups(ms = defaultTimeout) {
   return delay(data.groups, ms);
 }
 
-export function getStudents(group, ms = 1500) {
+export function getStudents(group, ms = defaultTimeout) {
   return delay(data.students.filter((student) => student.group === group), ms);
 }
 
-export function getStudent(name, ms = 1500) {
+export function getStudent(name, ms = defaultTimeout) {
   return delay(data.students.find((student) => student.name === name), ms);
 }
 
-export function getImage(src, ms = 1500) {
+export function getImage(src, ms = defaultTimeout) {
   return import(`./assets/${src}`)
     .then((image) => delay(image, ms));
 }

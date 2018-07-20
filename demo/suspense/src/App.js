@@ -1,5 +1,6 @@
-import React, { Placeholder } from 'react';
+import React from 'react';
 
+import Loading from './future/Loading';
 import Groups from './Groups';
 
 const App = () => (
@@ -8,9 +9,9 @@ const App = () => (
 
     <hr />
 
-    <Placeholder fallback={<div className="spinner"></div>}>
+    <Loading>
       <Groups />
-    </Placeholder>
+    </Loading>
   </section>
 );
 

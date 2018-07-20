@@ -1,7 +1,7 @@
-import React, { Placeholder } from 'react';
+import React from 'react';
 
+import Loading from './future/Loading';
 import Img from './future/Img';
-
 import { studentFetcher } from './future/fetchers';
 
 const Student = ({ name }) => {
@@ -9,9 +9,9 @@ const Student = ({ name }) => {
 
   return (
     <div className="student">
-      <Placeholder fallback={<div className="spinner avatar-spinner"></div>}>
+      <Loading fallback={<div className="spinner avatar-spinner"></div>}>
         <Img src={student.photo} className="avatar" />
-      </Placeholder>
+      </Loading>
       <h4>{student.name}</h4>
     </div>
   );
