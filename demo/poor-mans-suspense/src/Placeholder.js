@@ -4,13 +4,13 @@ class Placeholder extends Component {
   state = { isReady: true }
 
   componentDidCatch(e) {
-    this.setState(() => ({ isReady: false }))
-
-    if (e instanceof Promise) {
-      e.then(() => this.setState(() => ({ isReady: true })))
-    } else {
+    if (!(e instanceof Promise)) {
       throw e;
     }
+
+    this.setState(() => ({ isReady: false }))
+
+    e.then(() => this.setState(() => ({ isReady: true })))
   }
 
   render() {
