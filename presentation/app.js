@@ -1,6 +1,8 @@
 const glob = require('glob');
 const path = require('path');
 
+const config = require('./config');
+
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 
@@ -20,14 +22,13 @@ const revealPath = path.dirname(require.resolve('reveal.js/package.json'));
 
 // Enable white/black theme switch
 app.get('/', (req, res) => res.render('content', {
-  white: 'white' in req.query
+  white: 'white' in req.query,
+  title: config.title
 }));
 
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(express.static(path.join(__dirname, 'assets')));
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`App listening http://localhost:${port} port`)
+app.listen(config.port, () => {
+  console.log(`App listening http://localhost:${config.port} port`)
 });
