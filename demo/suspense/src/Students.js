@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Loading from './future/Loading';
+import Loading from './Loading';
 import { studentsFetcher } from './future/fetchers';
 
 import Student from './Student';

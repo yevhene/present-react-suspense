@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-class Placeholder extends Component {
+class Suspense extends Component {
   state = { isReady: true }
 
   componentDidCatch(e) {
@@ -22,4 +22,4 @@ class Placeholder extends Component {
   }
 }
 
-export default Placeholder;
+export default Suspense;

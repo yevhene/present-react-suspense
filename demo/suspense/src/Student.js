@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Loading from './future/Loading';
-import Img from './future/Img';
+import Loading from './Loading';
+import Img from './Img';
 import { studentFetcher } from './future/fetchers';
 
 const Student = ({ name }) => {

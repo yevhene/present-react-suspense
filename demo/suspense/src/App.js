@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { unstable_deferredUpdates as deferredUpdates } from 'react-dom';
 
-import Loading from './future/Loading';
-
+import Loading from './Loading';
 import Courses from './Courses';
 import Groups from './Groups';
 
@@ -10,15 +8,11 @@ class App extends Component {
   state = { page: 'students' }
 
   showStudents = () => {
-    deferredUpdates(() => {
-      this.setState(() => ({ page: 'students' }));
-    });
+    this.setState(() => ({ page: 'students' }));
   }
 
   showCourses = () => {
-    deferredUpdates(() => {
-      this.setState(() => ({ page: 'courses' }));
-    });
+    this.setState(() => ({ page: 'courses' }));
   }
 
   renderPage() {

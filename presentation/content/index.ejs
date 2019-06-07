@@ -235,16 +235,16 @@ export const enableSuspense = true;
   </section>
 
   <section>
-    <h3>Placeholder</h3>
+    <h3>Suspense</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
 const Loading = ({
   fallback = (<div className="spinner"></div>),
   children
 }) =&gt; (
-  &lt;Placeholder fallback={fallback}&gt;
+  &lt;Suspense fallback={fallback}&gt;
     &lt;Content /&gt;
-  &lt;/Placeholder&gt;
+  &lt;/Suspense&gt;
 );
     </code></pre>
   </section>
@@ -284,10 +284,10 @@ function SlowContent(props) {
   </section>
 
   <section>
-    <h3>Placeholder</h3>
+    <h3>Suspense</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
-class Placeholder extends Component {
+class Suspense extends Component {
   state = { isReady: true }
 
   componentDidCatch(e) {
@@ -299,7 +299,7 @@ class Placeholder extends Component {
 
   render() {
     if (!this.state.isReady) {
-      return this.props.placeholder;
+      return this.props.fallback;
     }
     return this.props.children;
   }
@@ -319,8 +319,8 @@ class Placeholder extends Component {
     <h3>React Implementation</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
-export const REACT_PLACEHOLDER_TYPE = hasSymbol
-  ? Symbol.for('react.placeholder')
+export const REACT_SUSPENSE_TYPE = hasSymbol
+  ? Symbol.for('react.suspense')
   : 0xead1;
     </code></pre>
 
@@ -329,34 +329,26 @@ export const REACT_PLACEHOLDER_TYPE = hasSymbol
 </section>
 
 <section>
-  <h2>simple-cache-provider</h2>
+  <h2>react-cache</h2>
 
   <section>
     <h4>Uniform Data/Assets/Code cache</h3>
   </section>
 
   <section>
-    <img src="images/simple-cache-provider-disclaimer.png" />
-  </section>
-
-  <section>
-    <img src="images/what-the-fuck.jpg" />
-  </section>
-
-  <section>
     <h3>read</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
-import {
-  createCache, createResource
-} from 'simple-cache-provider';
+import { createResource } from 'simple-cache-provider';
 
 const cache = createCache();
 
 export const studentFetcher = createResource(
   (id) =&gt; fetch(`http://localhost:3000/students/${id}`)
 );
+    </code></pre>
 
+    <pre><code class="javascript" data-trim contenteditable>
 const student = studentFetcher.read(cache, 1)
     </code></pre>
   </section>
@@ -379,6 +371,14 @@ const student = studentFetcher.read(cache, 1)
       <li>Data/Assets/Code loading</li>
     </ul>
   </section>
+
+  <section>
+    <h2>React.lazy (alternative)</h2>
+
+    <pre><code class="javascript" data-trim contenteditable>
+const OtherComponent = React.lazy(() =&gt; import('./OtherComponent'));
+    </code></pre>
+  </section>
 </section>
 
 <section>
@@ -388,20 +388,20 @@ const student = studentFetcher.read(cache, 1)
     <h2>Demo: suspense</h2>
 
     <ul>
-      <li>Loader deplayMs</li>
+      <li>Loader maxDuration</li>
     </ul>
   </section>
 
   <section>
-    <h3>delayMs</h3>
+    <h3>maxDuration</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
-      &lt;Placeholder
-        delayMs={1000}
+      &lt;Suspense
+        maxDuration={1000}
         fallback={&lt;Spinner /&gt;}
       &gt;
         &lt;Content /&gt;
-      &lt;/Placeholder&gt;
+      &lt;/Suspense&gt;
     </code></pre>
   </section>
 

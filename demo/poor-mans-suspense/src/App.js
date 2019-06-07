@@ -1,15 +1,15 @@
 import React from 'react';
 
 import SlowContent from './SlowContent';
-import Placeholder from './Placeholder';
+import Suspense from './Suspense';
 
 const App = () => (
   <section>
     <h2>Poor Man's Suspense</h2>
 
-    <Placeholder placeholder={<div className="spinner"></div>}>
+    <Suspense placeholder={<div className="spinner"></div>}>
       <SlowContent />
-    </Placeholder>
+    </Suspense>
   </section>
 );
 

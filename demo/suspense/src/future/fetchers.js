@@ -1,38 +1,27 @@
-import { createCache, createResource } from 'simple-cache-provider';
+import { createResource } from './poor-mans-cache';
 
 import { getCourses, getGroups, getImage, getStudents, getStudent } from 'data';
 
-const cache = createCache();
-
-function createFetcher(thunk) {
-  const res = createResource(thunk);
-
-  return {
-    preload: (key) => res.preload(cache, key),
-    read: (key) => res.read(cache, key)
-  };
-}
-
-export const groupsFetcher = createFetcher(
+export const groupsFetcher = createResource(
   () => getGroups()
 );
 
-export const studentsFetcher = createFetcher(
+export const studentsFetcher = createResource(
   (group) => getStudents(group)
 );
 
-export const studentFetcher = createFetcher(
+export const studentFetcher = createResource(
   (name) => getStudent(name)
 );
 
-export const coursesFetcher = createFetcher(
+export const coursesFetcher = createResource(
   () => getCourses()
 );
 
-export const imageFetcher = createFetcher(
+export const imageFetcher = createResource(
   (src) => getImage(src)
 );
 
-export const coursePageFetcher = createFetcher(
+export const coursePageFetcher = createResource(
   () =>  import('../Course.js')
 );
