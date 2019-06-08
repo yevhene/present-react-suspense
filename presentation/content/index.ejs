@@ -218,23 +218,6 @@ class ErrorBound extends Component {
   <h2>React Suspense</h2>
 
   <section>
-    <h3>This API is so raw ...</h3>
-
-    <img src="images/raw-api.jpg" />
-  </section>
-
-  <section>
-    <h3>Enable Suspense</h3>
-
-    <pre><code class="javascript" data-trim contenteditable>
-// Suspense
-export const enableSuspense = true;
-    </code></pre>
-
-    <p>react/packages/shared/ReactFeatureFlags.js</p>
-  </section>
-
-  <section>
     <h3>Suspense</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
@@ -339,9 +322,7 @@ export const REACT_SUSPENSE_TYPE = hasSymbol
     <h3>read</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
-import { createResource } from 'simple-cache-provider';
-
-const cache = createCache();
+import { createResource } from 'react-cache';
 
 export const studentFetcher = createResource(
   (id) =&gt; fetch(`http://localhost:3000/students/${id}`)
@@ -349,7 +330,7 @@ export const studentFetcher = createResource(
     </code></pre>
 
     <pre><code class="javascript" data-trim contenteditable>
-const student = studentFetcher.read(cache, 1)
+const student = studentFetcher.read(1)
     </code></pre>
   </section>
 
@@ -357,10 +338,10 @@ const student = studentFetcher.read(cache, 1)
     <h3>preload</h3>
 
     <pre><code class="javascript" data-trim contenteditable>
-studentFetcher.preload(cache, 1)
+studentFetcher.preload(1)
 
 // ...Later...
-const student = studentFetcher.read(cache, 1)
+const student = studentFetcher.read(1)
     </code></pre>
   </section>
 
